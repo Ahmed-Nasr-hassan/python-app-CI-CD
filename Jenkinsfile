@@ -8,8 +8,7 @@ pipeline {
 
     stages {
         stage('CI') {
-            steps {
-            
+
                 // Increment the APP_version environment variable by 0.1
                 def (major, minor) = APP_version.tokenize('.')
                 minor = (minor as Float) + 0.1
@@ -20,6 +19,7 @@ pipeline {
                     name 'APP_version'
                     value APP_version
 
+            steps {
                 git url: 'https://github.com/Ahmed-Nasr-hassan/python-app-CI-CD', branch: 'main'
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'MY_PASS', usernameVariable: 'MY_USER' )]) {
                     sh '''
