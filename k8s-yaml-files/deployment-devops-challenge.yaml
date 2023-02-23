@@ -4,6 +4,7 @@ metadata:
   labels:
     app: devops-challenge
   name: devops-challenge
+  namespace: default
 spec:
   replicas: 2
   selector:
