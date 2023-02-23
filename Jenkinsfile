@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // Initialize APP_version with default value of 1.0 if it does not exist
-        APP_version = env.APP_version ?: '1.0'
+        APP_version = env.APP_version ?: "1.0"
     }
 
     stages {
