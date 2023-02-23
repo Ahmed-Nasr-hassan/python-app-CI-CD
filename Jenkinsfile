@@ -1,7 +1,7 @@
 pipeline {
     agent any
       environment {
-          env.Creation_Date = `date +'%m/%d-%H:%M'`
+          env.Creation_Date=""
       }
     stages {
         stage('CI') {
@@ -9,7 +9,7 @@ pipeline {
                 git url: 'https://github.com/Ahmed-Nasr-hassan/python-app-CI-CD', branch: 'main'
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'MY_PASS', usernameVariable: 'MY_USER' )]) {
                 sh '''
-
+                  Creation_Date=`date +'%m/%d-%H:%M'`
                   echo username is ${MY_USER}
                   docker login -u ${MY_USER} -p ${MY_PASS}
                   docker build -t ahmednasrhassan/python-app:${Creation_Date} .
@@ -24,6 +24,7 @@ pipeline {
         stage('CD - inside k8s') {
             steps {
                 sh '''
+                  echo $Creation_Date
                   kubectl apply -f ./k8s-yaml-files/env-configmap.yaml
                   kubectl apply -f ./k8s-yaml-files/deployment-devops-challenge.yaml
                   kubectl set image deployment/devops-challenge devops-challenge=ahmednasrhassan/python-app:${Creation_Date}
