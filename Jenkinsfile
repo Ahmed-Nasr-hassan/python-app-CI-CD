@@ -1,6 +1,15 @@
 pipeline {
     agent any
 
+    environment {
+        // Initialize APP_version with default value of 1.0 if it does not exist
+        if (env.APP_version) {
+          APP_version = env.APP_version
+        } else {
+          APP_version = '1.0'
+        }
+    }
+
     stages {
         stage('CI') {
             steps {
@@ -11,6 +20,7 @@ pipeline {
                   docker login -u ${MY_USER} -p ${MY_PASS}
                   docker build -t ahmednasrhassan/python-app .
                   docker push ahmednasrhassan/python-app
+                  echo $APP_version
                 '''
               }
 
