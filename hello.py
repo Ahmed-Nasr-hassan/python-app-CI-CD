@@ -15,7 +15,7 @@ try:
     r.set("counter", 0)
 except ConnectionError:
     print(os.getenv("REDIS_HOST"),os.getenv("REDIS_DB"),os.getenv("REDIS_PORT"))
-    # print("Redis server isn't running. Exiting...")
+    print("Redis server isn't running. Exiting...")
     exit()
 
 environment = os.getenv("ENVIRONMENT")
