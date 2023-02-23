@@ -1,7 +1,7 @@
 pipeline {
     agent any
       environment {
-          env.Creation_Date=""
+          Creation_Date=""
       }
     stages {
         stage('CI') {
