@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        // Initialize APP_version with default value of 1.0 if it does not exist
-        APP_version = env.APP_version ?: "1.0"
-    }
-
     stages {
         stage('CI') {
             steps {
@@ -27,8 +22,7 @@ pipeline {
             steps {
                 sh '''
                   kubectl apply -f ./k8s-yaml-files/env-configmap.yaml
-                  kubectl delete -f ./k8s-yaml-files/deployment-devops-challenge.yaml
-                  kubectl apply -f ./k8s-yaml-files/deployment-devops-challenge.yaml
+                  kubectl replace -f ./k8s-yaml-files/deployment-devops-challenge.yaml --force
                 '''
                 }
             }
