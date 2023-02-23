@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: devops-challenge
-        image: ahmednasrhassan/python-app:${Creation_Date}
+        image: ahmednasrhassan/python-app:Creation_Date
         imagePullPolicy: Always
         ports:
          - containerPort: 8000
