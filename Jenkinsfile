@@ -22,7 +22,7 @@ pipeline {
             steps {
                 sh '''
                   kubectl apply -f ./k8s-yaml-files/env-configmap.yaml
-                  kubectl replace -f ./k8s-yaml-files/deployment-devops-challenge.yaml --force
+                  kubectl apply -f ./k8s-yaml-files/deployment-devops-challenge.yaml --force
                 '''
                 }
             }
