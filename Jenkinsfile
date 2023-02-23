@@ -26,7 +26,7 @@ pipeline {
                 sh '''
                   kubectl apply -f ./k8s-yaml-files/env-configmap.yaml
                   kubectl apply -f ./k8s-yaml-files/deployment-devops-challenge.yaml
-                  kubectl set image deployment/devops-challenge devops-challenge=ahmednasrhassan/python-app:${Creation_Date}
+                  kubectl set image deployment/devops-challenge devops-challenge=ahmednasrhassan/python-app:${Creation_Date} -n default
                 '''
                 }
             }
