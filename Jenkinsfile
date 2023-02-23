@@ -25,8 +25,7 @@ pipeline {
             steps {
                 sh '''
                   kubectl apply -f ./k8s-yaml-files/env-configmap.yaml
-                  // kubectl apply -f ./k8s-yaml-files/deployment-devops-challenge.yaml
-                  envsubst < ./k8s-yaml-files/deployment-devops-challenge.yaml | kubectl apply -f -
+                  sed -e 's|Creation_Date|${Creation_Date}|g' test-deploy.yaml | kubectl apply -f -
                 '''
                 }
             }
