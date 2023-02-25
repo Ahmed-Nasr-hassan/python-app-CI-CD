@@ -1,7 +1,7 @@
 pipeline {
     agent any
       environment {
-        Creation_Date = sh(script: "date +'%d_%b_%H_%M'", returnStdout: true).trim()
+        Creation_Date = sh(script: "date +'%b_%d_%H_%M'", returnStdout: true).trim()
       }
     stages {
         stage('CI') {
