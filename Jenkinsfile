@@ -27,6 +27,7 @@ pipeline {
                   kubectl apply -f ./k8s-yaml-files/env-configmap.yaml
                   sed -i "s/Creation_Date/${Creation_Date}/g" ./k8s-yaml-files/deployment-devops-challenge.yaml
                   kubectl apply -f ./k8s-yaml-files/deployment-devops-challenge.yaml
+                  kubectl apply -f ./k8s-yaml-files/loadbalancer-service.yaml
                 '''
                 }
             }
